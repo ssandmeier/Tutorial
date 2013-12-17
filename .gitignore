@@ -1,0 +1,14 @@
+# IntelliJ project files
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Eclipse project files
+.classpath
+.project
+.settings
+
+# Maven output directory
+target
+.DS_Store
