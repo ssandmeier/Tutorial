@@ -11,4 +11,9 @@
 
 # Maven output directory
 target
+
+# Compiled Java class files
+*.class
+
+# Mac OSX folder metadata
 .DS_Store
