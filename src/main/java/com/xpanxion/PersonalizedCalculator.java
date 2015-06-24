@@ -1,5 +1,7 @@
 package com.xpanxion;
 
+import org.junit.Assert;
+
 import java.util.Scanner;
 
 /**
@@ -23,46 +25,56 @@ public class PersonalizedCalculator {
         int operation = keyboard.nextInt();
 
         if(operation == 1) {
+
             System.out.println("");
             System.out.print("Please enter numbers separated by spaces: ");
-            int addend = keyboard.nextInt();
-            int augend = keyboard.nextInt();
 
-            int sum = addend + augend;
+            int addBeg = keyboard.nextInt();
+            int addEnd = keyboard.nextInt();
+            int sum = addBeg + addEnd;
 
             System.out.println("");
-            System.out.print("Results: " + addend + " + " + augend + " = " + sum);
+            System.out.print("Results: " + addBeg + " + " + addEnd + " = " + sum);
 
         } else if (operation == 2) {
             System.out.println("");
             System.out.print("Please enter numbers separated by spaces: ");
-            int minend = keyboard.nextInt();
-            int subend = keyboard.nextInt();
 
-            int difference = minend - subend;
+            int minBeg= keyboard.nextInt();
+            int subEnd = keyboard.nextInt();
+            int difference = minBeg - subEnd;
 
             System.out.println("");
-            System.out.print("Results: " + minend + " - " + subend + " = " + difference);
+            System.out.print("Results: " + minBeg + " - " + subEnd + " = " + difference);
+
         } else if (operation == 3) {
+
             System.out.println("");
             System.out.print("Please enter numbers separated by spaces: ");
-            int multiplier = keyboard.nextInt();
-            int mltiplicand = keyboard.nextInt();
 
-            int product = multiplier * mltiplicand;
+            int multiplier = keyboard.nextInt();
+            int multiplicand = keyboard.nextInt();
+            int product = multiplier * multiplicand;
 
             System.out.println("");
-            System.out.print("Results: " + multiplier + " * " + mltiplicand + " = " + product);
+            System.out.print("Results: " + multiplier + " * " + multiplicand + " = " + product);
+
         } else if (operation == 4) {
             System.out.println("");
             System.out.print("Please enter numbers separated by spaces: ");
-            int division = keyboard.nextInt();
-            int divisionand = keyboard.nextInt();
 
-            int quotient = division / divisionand;
+            int dividend = keyboard.nextInt();
+            int divisor = keyboard.nextInt();
 
-            System.out.println("");
-            System.out.print("Results: " + division + " / " + divisionand + " = " + quotient);
+            if (divisor == 0) {
+                System.out.println("You cannot divide by zero!");
+            } else {
+                int quotient = dividend / divisor;
+
+                System.out.println("");
+                System.out.print("Results: " + dividend + " / " + divisor + " = " + quotient);
+            }
+
         } else {
             System.out.println(String.format("Invalid operation: %s", operation));
         }
