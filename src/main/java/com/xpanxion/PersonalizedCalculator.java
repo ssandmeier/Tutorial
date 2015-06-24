@@ -8,6 +8,12 @@ import java.util.Scanner;
  * Created by cdorsey on 6/24/2015.
  */
 public class PersonalizedCalculator {
+
+    private static void promptForNumbers() {
+        System.out.println("");
+        System.out.print("Please enter numbers separated by spaces: ");
+    }
+
     public static void main(String[] args) {
         System.out.print("What is your name? ");
 
@@ -25,43 +31,37 @@ public class PersonalizedCalculator {
         int operation = keyboard.nextInt();
 
         if(operation == 1) {
-
-            System.out.println("");
-            System.out.print("Please enter numbers separated by spaces: ");
+            promptForNumbers();
 
             int addBeg = keyboard.nextInt();
             int addEnd = keyboard.nextInt();
             int sum = addBeg + addEnd;
 
-            System.out.println("");
-            System.out.print("Results: " + addBeg + " + " + addEnd + " = " + sum);
+            System.out.print("\nResults: " + addBeg + " + " + addEnd + " = " + sum);
 
         } else if (operation == 2) {
-            System.out.println("");
-            System.out.print("Please enter numbers separated by spaces: ");
+            promptForNumbers();
 
             int minBeg= keyboard.nextInt();
             int subEnd = keyboard.nextInt();
             int difference = minBeg - subEnd;
 
             System.out.println("");
-            System.out.print("Results: " + minBeg + " - " + subEnd + " = " + difference);
+            System.out.print("\nResults: " + minBeg + " - " + subEnd + " = " + difference);
 
         } else if (operation == 3) {
 
-            System.out.println("");
-            System.out.print("Please enter numbers separated by spaces: ");
+            promptForNumbers();
 
             int multiplier = keyboard.nextInt();
             int multiplicand = keyboard.nextInt();
             int product = multiplier * multiplicand;
 
             System.out.println("");
-            System.out.print("Results: " + multiplier + " * " + multiplicand + " = " + product);
+            System.out.print("\nResults: " + multiplier + " * " + multiplicand + " = " + product);
 
         } else if (operation == 4) {
-            System.out.println("");
-            System.out.print("Please enter numbers separated by spaces: ");
+            promptForNumbers();
 
             int dividend = keyboard.nextInt();
             int divisor = keyboard.nextInt();
@@ -72,7 +72,7 @@ public class PersonalizedCalculator {
                 int quotient = dividend / divisor;
 
                 System.out.println("");
-                System.out.print("Results: " + dividend + " / " + divisor + " = " + quotient);
+                System.out.print("\nResults: " + dividend + " / " + divisor + " = " + quotient);
             }
 
         } else {
