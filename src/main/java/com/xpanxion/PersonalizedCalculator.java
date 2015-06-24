@@ -33,52 +33,58 @@ public class PersonalizedCalculator {
         System.out.println(MULTIPLICATION + ") Multiplication");
         System.out.println(DIVISION + ") Division");
         System.out.print("Select an option by numeric value? ");
+
         int operation = keyboard.nextInt();
 
-        if(operation == ADDITION) {
-            promptForNumbers();
+        switch(operation) {
+            case ADDITION:
+                promptForNumbers();
 
-            int addBeg = keyboard.nextInt();
-            int addEnd = keyboard.nextInt();
-            int sum = addBeg + addEnd;
+                int addBeg = keyboard.nextInt();
+                int addEnd = keyboard.nextInt();
+                int sum = addBeg + addEnd;
 
-            System.out.print("\nResults: " + addBeg + " + " + addEnd + " = " + sum);
+                System.out.print("\nResults: " + addBeg + " + " + addEnd + " = " + sum);
+                break;
 
-        } else if (operation == SUBTRACTION) {
-            promptForNumbers();
+            case SUBTRACTION:
+                promptForNumbers();
 
-            int minBeg= keyboard.nextInt();
-            int subEnd = keyboard.nextInt();
-            int difference = minBeg - subEnd;
+                int minBeg= keyboard.nextInt();
+                int subEnd = keyboard.nextInt();
+                int difference = minBeg - subEnd;
 
-            System.out.print("\nResults: " + minBeg + " - " + subEnd + " = " + difference);
+                System.out.print("\nResults: " + minBeg + " - " + subEnd + " = " + difference);
+                break;
 
-        } else if (operation == MULTIPLICATION) {
+            case MULTIPLICATION:
+                promptForNumbers();
 
-            promptForNumbers();
+                int multiplier = keyboard.nextInt();
+                int multiplicand = keyboard.nextInt();
+                int product = multiplier * multiplicand;
 
-            int multiplier = keyboard.nextInt();
-            int multiplicand = keyboard.nextInt();
-            int product = multiplier * multiplicand;
+                System.out.print("\nResults: " + multiplier + " * " + multiplicand + " = " + product);
+                break;
 
-            System.out.print("\nResults: " + multiplier + " * " + multiplicand + " = " + product);
+            case DIVISION:
+                promptForNumbers();
 
-        } else if (operation == DIVISION) {
-            promptForNumbers();
+                int dividend = keyboard.nextInt();
+                int divisor = keyboard.nextInt();
 
-            int dividend = keyboard.nextInt();
-            int divisor = keyboard.nextInt();
+                if (divisor == 0) {
+                    System.out.println("You cannot divide by zero!");
+                } else {
+                    int quotient = dividend / divisor;
 
-            if (divisor == 0) {
-                System.out.println("You cannot divide by zero!");
-            } else {
-                int quotient = dividend / divisor;
+                    System.out.print("\nResults: " + dividend + " / " + divisor + " = " + quotient);
+                }
+                break;
 
-                System.out.print("\nResults: " + dividend + " / " + divisor + " = " + quotient);
-            }
-
-        } else {
-            System.out.println(String.format("Invalid operation: %s", operation));
+            default:
+                System.out.println(String.format("Invalid operation: %s", operation));
+                break;
         }
     }
 }
