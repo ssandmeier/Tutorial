@@ -8,6 +8,10 @@ import java.util.Scanner;
  * Created by cdorsey on 6/24/2015.
  */
 public class PersonalizedCalculator {
+    public static final int ADDITION = 1;
+    public static final int SUBTRACTION = 2;
+    public static final int MULTIPLICATION = 3;
+    public static final int DIVISION = 4;
 
     private static void promptForNumbers() {
         System.out.println("");
@@ -15,6 +19,7 @@ public class PersonalizedCalculator {
     }
 
     public static void main(String[] args) {
+        System.out.println("** Welcome to the personalized calculator **\n");
         System.out.print("What is your name? ");
 
         Scanner keyboard = new Scanner(System.in);
@@ -23,14 +28,14 @@ public class PersonalizedCalculator {
         System.out.print("Hello, " + name);
 
         System.out.println(". I can perform the following operations:");
-        System.out.println("1) Addition");
-        System.out.println("2) Subtraction");
-        System.out.println("3) Multiplication");
-        System.out.println("4) Division");
+        System.out.println(ADDITION + ") Addition");
+        System.out.println(SUBTRACTION + ") Subtraction");
+        System.out.println(MULTIPLICATION + ") Multiplication");
+        System.out.println(DIVISION + ") Division");
         System.out.print("Select an option by numeric value? ");
         int operation = keyboard.nextInt();
 
-        if(operation == 1) {
+        if(operation == ADDITION) {
             promptForNumbers();
 
             int addBeg = keyboard.nextInt();
@@ -39,17 +44,16 @@ public class PersonalizedCalculator {
 
             System.out.print("\nResults: " + addBeg + " + " + addEnd + " = " + sum);
 
-        } else if (operation == 2) {
+        } else if (operation == SUBTRACTION) {
             promptForNumbers();
 
             int minBeg= keyboard.nextInt();
             int subEnd = keyboard.nextInt();
             int difference = minBeg - subEnd;
 
-            System.out.println("");
             System.out.print("\nResults: " + minBeg + " - " + subEnd + " = " + difference);
 
-        } else if (operation == 3) {
+        } else if (operation == MULTIPLICATION) {
 
             promptForNumbers();
 
@@ -57,10 +61,9 @@ public class PersonalizedCalculator {
             int multiplicand = keyboard.nextInt();
             int product = multiplier * multiplicand;
 
-            System.out.println("");
             System.out.print("\nResults: " + multiplier + " * " + multiplicand + " = " + product);
 
-        } else if (operation == 4) {
+        } else if (operation == DIVISION) {
             promptForNumbers();
 
             int dividend = keyboard.nextInt();
@@ -71,7 +74,6 @@ public class PersonalizedCalculator {
             } else {
                 int quotient = dividend / divisor;
 
-                System.out.println("");
                 System.out.print("\nResults: " + dividend + " / " + divisor + " = " + quotient);
             }
 
