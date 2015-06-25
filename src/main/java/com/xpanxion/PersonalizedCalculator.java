@@ -18,10 +18,12 @@ public class PersonalizedCalculator {
         System.out.print("Please enter numbers separated by spaces: ");
     }
 
-    private static void Calculator(int operation, String name, Scanner keyboard) {
+    private static Calculation Calculator(int operation, String name, Scanner keyboard) {
+        Calculation result = new Calculation();
+
         switch(operation) {
             case QUIT:
-                System.out.println("Goodbye, " + name);
+                result.setTextResult("Goodbye, " + name);
                 break;
 
             case ADDITION:
@@ -31,7 +33,7 @@ public class PersonalizedCalculator {
                 int addEnd = keyboard.nextInt();
                 int sum = addBeg + addEnd;
 
-                System.out.print("\nResults: " + addBeg + " + " + addEnd + " = " + sum + "\n");
+                result.setTextResult("\nResults: " + addBeg + " + " + addEnd + " = " + sum);
                 break;
 
             case SUBTRACTION:
@@ -41,7 +43,7 @@ public class PersonalizedCalculator {
                 int subEnd = keyboard.nextInt();
                 int difference = minBeg - subEnd;
 
-                System.out.print("\nResults: " + minBeg + " - " + subEnd + " = " + difference + "\n");
+                result.setTextResult("\nResults: " + minBeg + " - " + subEnd + " = " + difference);
                 break;
 
             case MULTIPLICATION:
@@ -51,7 +53,8 @@ public class PersonalizedCalculator {
                 int multiplicand = keyboard.nextInt();
                 int product = multiplier * multiplicand;
 
-                System.out.print("\nResults: " + multiplier + " * " + multiplicand + " = " + product + "\n");
+
+                result.setTextResult("\nResults: " + multiplier + " * " + multiplicand + " = " + product);
                 break;
 
             case DIVISION:
@@ -65,7 +68,7 @@ public class PersonalizedCalculator {
                 } else {
                     int quotient = dividend / divisor;
 
-                    System.out.print("\nResults: " + dividend + " / " + divisor + " = " + quotient + "\n");
+                    result.setTextResult("\nResults: " + dividend + " / " + divisor + " = " + quotient);
                 }
                 break;
             case FACTORIAL:
@@ -77,14 +80,14 @@ public class PersonalizedCalculator {
                     total *= i;
                 }
 
-                System.out.print("\nResults: " + factorial + "! = " + total + "\n");
+                result.setTextResult("\nResults: " + factorial + "! = " + total);
 
                 break;
             default:
                 System.out.println(String.format("Invalid operation: %s", operation));
                 break;
         }
-
+        return result;
     }
 
     public static void main(String[] args) {
@@ -97,19 +100,20 @@ public class PersonalizedCalculator {
         System.out.print("Hello, " + name);
 
         System.out.println(". I can perform the following operations:");
+        System.out.println(QUIT + ") Quit");
         System.out.println(ADDITION + ") Addition");
         System.out.println(SUBTRACTION + ") Subtraction");
         System.out.println(MULTIPLICATION + ") Multiplication");
         System.out.println(DIVISION + ") Division");
         System.out.println(FACTORIAL + ") Factorial");
-        System.out.println(QUIT + ") Quit");
 
         int operation = -1;
 
         while(operation != QUIT) {
             System.out.print("\nSelect an option by numeric value? ");
             operation = keyboard.nextInt();
-            Calculator(operation, name, keyboard);
+            Calculation answer = Calculator(operation, name, keyboard);
+            System.out.println(answer.getTextResult());
         }
 
     }
