@@ -27,9 +27,7 @@ public class PersonalizedCalculator {
                 break;
 
             case ADDITION:
-                promptForNumbers();
-
-                int addBeg = keyboard.nextInt();
+                                int addBeg = keyboard.nextInt();
                 int addEnd = keyboard.nextInt();
                 int sum = addBeg + addEnd;
 
@@ -37,8 +35,6 @@ public class PersonalizedCalculator {
                 break;
 
             case SUBTRACTION:
-                promptForNumbers();
-
                 int minBeg= keyboard.nextInt();
                 int subEnd = keyboard.nextInt();
                 int difference = minBeg - subEnd;
@@ -47,8 +43,6 @@ public class PersonalizedCalculator {
                 break;
 
             case MULTIPLICATION:
-                promptForNumbers();
-
                 int multiplier = keyboard.nextInt();
                 int multiplicand = keyboard.nextInt();
                 int product = multiplier * multiplicand;
@@ -58,8 +52,6 @@ public class PersonalizedCalculator {
                 break;
 
             case DIVISION:
-                promptForNumbers();
-
                 int dividend = keyboard.nextInt();
                 int divisor = keyboard.nextInt();
 
@@ -72,7 +64,6 @@ public class PersonalizedCalculator {
                 }
                 break;
             case FACTORIAL:
-                promptForNumbers();
                 int factorial = keyboard.nextInt();
                 int total = 1;
 
@@ -112,6 +103,11 @@ public class PersonalizedCalculator {
         while(operation != QUIT) {
             System.out.print("\nSelect an option by numeric value? ");
             operation = keyboard.nextInt();
+
+            if(operation >= ADDITION && operation <= FACTORIAL) {
+                promptForNumbers();
+            }
+
             Calculation answer = Calculator(operation, name, keyboard);
             System.out.println(answer.getTextResult());
         }
