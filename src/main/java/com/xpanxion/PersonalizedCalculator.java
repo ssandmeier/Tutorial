@@ -11,6 +11,7 @@ public class PersonalizedCalculator {
     public static final int SUBTRACTION = 2;
     public static final int MULTIPLICATION = 3;
     public static final int DIVISION = 4;
+    public static final int FACTORIAL = 5;
 
     private static void promptForNumbers() {
         System.out.println("");
@@ -67,7 +68,18 @@ public class PersonalizedCalculator {
                     System.out.print("\nResults: " + dividend + " / " + divisor + " = " + quotient + "\n");
                 }
                 break;
+            case FACTORIAL:
+                promptForNumbers();
+                int factorial = keyboard.nextInt();
+                int total = 1;
 
+                for(int i = factorial; i > 0; i--) {
+                    total *= i;
+                }
+
+                System.out.print("\nResults: " + factorial + "! = " + total + "\n");
+
+                break;
             default:
                 System.out.println(String.format("Invalid operation: %s", operation));
                 break;
@@ -89,6 +101,7 @@ public class PersonalizedCalculator {
         System.out.println(SUBTRACTION + ") Subtraction");
         System.out.println(MULTIPLICATION + ") Multiplication");
         System.out.println(DIVISION + ") Division");
+        System.out.println(FACTORIAL + ") Factorial");
         System.out.println(QUIT + ") Quit");
 
         int operation = -1;
