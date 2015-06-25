@@ -1,5 +1,7 @@
 package com.xpanxion;
 
+import com.sun.org.apache.xpath.internal.operations.Mult;
+
 import java.util.Scanner;
 
 /**
@@ -23,55 +25,34 @@ public class Calculator {
                 break;
 
             case ADDITION:
-                int addBeg = keyboard.nextInt();
-                int addEnd = keyboard.nextInt();
-                int sum = addBeg + addEnd;
-
-                result.setTextResult("\nResults: " + addBeg + " + " + addEnd + " = " + sum);
+                Addition addition = new Addition();
+                result = addition.performOperation(keyboard);
                 break;
 
             case SUBTRACTION:
-                int minBeg= keyboard.nextInt();
-                int subEnd = keyboard.nextInt();
-                int difference = minBeg - subEnd;
+                Subtraction subtraction = new Subtraction();
 
-                result.setTextResult("\nResults: " + minBeg + " - " + subEnd + " = " + difference);
+                result = subtraction.performOperation(keyboard);
                 break;
 
             case MULTIPLICATION:
-                int multiplier = keyboard.nextInt();
-                int multiplicand = keyboard.nextInt();
-                int product = multiplier * multiplicand;
+                Multiplication multiplication = new Multiplication();
 
-
-                result.setTextResult("\nResults: " + multiplier + " * " + multiplicand + " = " + product);
+                result = multiplication.performOperation(keyboard);
                 break;
 
             case DIVISION:
-                int dividend = keyboard.nextInt();
-                int divisor = keyboard.nextInt();
+                Division division = new Division();
 
-                if (divisor == 0) {
-                    System.out.println("You cannot divide by zero!");
-                } else {
-                    int quotient = dividend / divisor;
-
-                    result.setTextResult("\nResults: " + dividend + " / " + divisor + " = " + quotient);
-                }
+                result = division.performOperation(keyboard);
                 break;
             case FACTORIAL:
-                int factorial = keyboard.nextInt();
-                int total = 1;
+                Factorial factorial = new Factorial();
 
-                for(int i = factorial; i > 0; i--) {
-                    total *= i;
-                }
-
-                result.setTextResult("\nResults: " + factorial + "! = " + total);
-
+                result = factorial.performOperation(keyboard);
                 break;
             default:
-                System.out.println(String.format("Invalid operation: %s", operation));
+                System.out.println(String.format("\nInvalid operation: %s", operation));
                 break;
         }
         return result;
