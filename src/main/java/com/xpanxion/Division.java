@@ -5,7 +5,12 @@ import java.util.Scanner;
 /**
  * Created by cdorsey on 6/25/2015.
  */
-public class Division {
+public class Division extends BinaryOperation {
+
+    public Division() {
+        super("/");
+    }
+
     public Calculation performOperation(Scanner keyboard) {
         int dividend = keyboard.nextInt();
         int divisor = keyboard.nextInt();
@@ -17,7 +22,7 @@ public class Division {
         } else {
             int quotient = dividend / divisor;
 
-            result.setTextResult("\nResults: " + dividend + " / " + divisor + " = " + quotient);
+            result = successfulCalculation(dividend, divisor, quotient);
         }
 
         return result;
