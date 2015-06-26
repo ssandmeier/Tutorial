@@ -1,7 +1,5 @@
 package com.xpanxion;
 
-import java.util.Scanner;
-
 /**
  * Created by cdorsey on 6/25/2015.
  */
@@ -10,11 +8,16 @@ public class Subtraction extends BinaryOperation {
     public Subtraction() {
         super("-");
     }
-    public Calculation performOperation(Scanner keyboard) {
-        int minBeg= keyboard.nextInt();
-        int subEnd = keyboard.nextInt();
-        int difference = minBeg - subEnd;
 
-        return successfulCalculation(minBeg, subEnd, difference);
+    protected int calculate(int minBeg, int minEnd) {
+        return minBeg - minEnd;
+    }
+
+    protected boolean isValid(int minBeg, int minEnd) {
+        return true;
+    }
+
+    protected String errorMessage() {
+        return null;
     }
 }

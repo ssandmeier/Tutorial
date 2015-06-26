@@ -11,6 +11,11 @@ public class Factorial extends BinaryOperation {
         super("!");
     }
 
+    @Override
+    protected int calculate(int leftHandSide, int rightHandSide) {
+        return 0;
+    }
+
     public Calculation performOperation(Scanner keyboard) {
         int factorial = keyboard.nextInt();
         int total = 1;
@@ -20,5 +25,13 @@ public class Factorial extends BinaryOperation {
         }
 
         return successfulCalculation(factorial,0,total);
+    }
+
+    protected boolean isValid(int dividend, int divisor) {
+        return true;
+    }
+
+    protected String errorMessage() {
+        return null;
     }
 }

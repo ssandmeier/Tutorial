@@ -10,21 +10,17 @@ public class Division extends BinaryOperation {
     public Division() {
         super("/");
     }
+    
+    protected int calculate(int dividend, int divisor) {
+        return dividend / divisor;
+    }
 
-    public Calculation performOperation(Scanner keyboard) {
-        int dividend = keyboard.nextInt();
-        int divisor = keyboard.nextInt();
 
-        Calculation result = new Calculation();
+    protected boolean isValid(int dividend, int divisor) {
+        return divisor != 0;
+    }
 
-        if (divisor == 0) {
-            System.out.println("You cannot divide by zero!");
-        } else {
-            int quotient = dividend / divisor;
-
-            result = successfulCalculation(dividend, divisor, quotient);
-        }
-
-        return result;
+    protected String errorMessage() {
+         return "\nYou cannot divide by zero!";
     }
 }
