@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Created by cdorsey on 6/26/2015.
  */
-public abstract class BinaryOperation {
+public abstract class BinaryOperation implements Operation {
     private String operation;
 
     public BinaryOperation(String op) {

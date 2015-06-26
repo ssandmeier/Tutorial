@@ -17,44 +17,47 @@ public class Calculator {
 
     public Calculation Calculator(int operation, String name, Scanner keyboard) {
 
+        Operation oper = null;
         Calculation result = new Calculation();
 
         switch(operation) {
             case QUIT:
-                result.setTextResult("Goodbye, " + name);
+                result.setTextResult("\nGoodbye, " + name);
+
                 break;
 
             case ADDITION:
-                Addition addition = new Addition();
-                result = addition.performOperation(keyboard);
+                oper = new Addition();
+
                 break;
 
             case SUBTRACTION:
-                Subtraction subtraction = new Subtraction();
+                oper = new Subtraction();
 
-                result = subtraction.performOperation(keyboard);
                 break;
 
             case MULTIPLICATION:
-                Multiplication multiplication = new Multiplication();
+                oper = new Multiplication();
 
-                result = multiplication.performOperation(keyboard);
                 break;
 
             case DIVISION:
-                Division division = new Division();
+                oper = new Division();
 
-                result = division.performOperation(keyboard);
                 break;
             case FACTORIAL:
-                Factorial factorial = new Factorial();
+                oper = new Factorial();
 
-                result = factorial.performOperation(keyboard);
                 break;
             default:
                 System.out.println(String.format("\nInvalid operation: %s", operation));
                 break;
         }
+
+        if(oper != null) {
+            result = oper.performOperation(keyboard);
+        }
+
         return result;
     }
 
