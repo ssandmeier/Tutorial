@@ -3,5 +3,14 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
+    <servlet>
+        <servlet-name>Calculator</servlet-name>
+        <servlet-class>com.xpanxion.web.CalculatorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Calculator</servlet-name>
+        <url-pattern>/calculator</url-pattern>
+    </servlet-mapping>
 
 </web-app>
