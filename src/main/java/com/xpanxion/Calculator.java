@@ -2,6 +2,8 @@ package com.xpanxion;
 
 import com.sun.org.apache.xpath.internal.operations.Mult;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -55,7 +57,17 @@ public class Calculator {
         }
 
         if(oper != null) {
-            result = oper.performOperation(keyboard);
+            try {
+                result = oper.performOperation(keyboard);
+
+            } catch (InputMismatchException inputMismatchException) {
+                result = new Calculation();
+                result.setTextResult("Invalid values were specified.");
+            } catch (NoSuchElementException noSuchElementException){
+                result = new Calculation();
+                result.setTextResult("No values were specified.");
+            }
+
         }
 
         return result;
