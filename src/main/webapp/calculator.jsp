@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>${name}&apos;s Personalized Calculator</title>
+        <link rel="stylesheet" type="text/css" href="calculator.css">
     </head>
 
     <body>
