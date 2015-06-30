@@ -10,6 +10,16 @@
 
         <form method="get" action="calculator">
             <div>
+                <label for="operation">What would you like to do?</label>
+                <select name="operation">
+                    <option value="1">Add</option>
+                    <option value="2">Subtract</option>
+                    <option value="3">Multiply</option>
+                    <option value="4">Divide</option>
+                    <option value="5">Factorial</option>
+                </select>
+            </div>
+            <div>
                 <label for="operands">Please enter some numbers separated by spaces</label>
                 <input name="operands" type="text"></input>
             </div>
