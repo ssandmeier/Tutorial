@@ -4,7 +4,26 @@
     <head>
         <title>${name}&apos;s Personalized Calculator</title>
         <link rel="stylesheet" type="text/css" href="calculator.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
         <script>
+            $(document).ready(function() {
+               $("input[name=operands]").keyup(function() {
+                    var matches = $(this).val().match(/^([0-9]+( )?)+$/g);
+
+                    if(matches) {
+                        $(".error-message").hide();
+                        $("input[name=calculate]").show();
+                    } else {
+                        $(".error-message").show();
+                        $("input[name=calculate]").hide();
+
+                        if($("input[name=operands]").val() == "") {
+                            $(".error-message").hide();
+                        }
+                    }
+               });
+            });
+
             function validateOperands(operands) {
                 var matches = operands.value.match(/^([0-9]+( )?)+$/g);
 
@@ -35,7 +54,7 @@
             </div>
             <div>
                 <label for="operands">Please enter some numbers separated by spaces</label>
-                <input name="operands" type="text" onkeypress="validateOperands(this)"></input>
+                <input name="operands" type="text"></input>
             </div>
 
             <div class="error-message">
