@@ -9,3 +9,12 @@ input, select {
     height: 25px;
     padding: 5px;
 }
+
+.error-message {
+    border: 2px solid red;
+    background-color: pink;
+    margin: 5px;
+    padding: 3px;
+    width: 25%;
+    display: none;
+}
