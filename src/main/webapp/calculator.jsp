@@ -4,6 +4,19 @@
     <head>
         <title>${name}&apos;s Personalized Calculator</title>
         <link rel="stylesheet" type="text/css" href="calculator.css">
+        <script>
+            function validateOperands(operands) {
+                var matches = operands.value.match(/^([0-9]+( )?)+$/g);
+
+                if(matches) {
+                    document.getElementsByClassName("error-message")[0].style.display = 'none';
+                    document.forms[0].calculate.style.display = 'block';
+                } else {
+                    document.getElementsByClassName("error-message")[0].style.display = 'block';
+                    document.forms[0].calculate.style.display = 'none';
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -22,8 +35,13 @@
             </div>
             <div>
                 <label for="operands">Please enter some numbers separated by spaces</label>
-                <input name="operands" type="text"></input>
+                <input name="operands" type="text" onkeypress="validateOperands(this)"></input>
             </div>
+
+            <div class="error-message">
+                Please enter valid numbers
+            </div>
+
             <div>
                 <input name="calculate" type="submit" value="Calculate"></input>
             </div>
