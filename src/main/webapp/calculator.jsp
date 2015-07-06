@@ -65,7 +65,7 @@
                 <input name="calculate" type="submit" value="Calculate"></input>
             </div>
         </form>
-        <div>${requestScope.resultText}</div>
+        <div id="result-text">${requestScope.resultText}</div>
         <a href="logout">Logout</a>
     </body>
 </html>

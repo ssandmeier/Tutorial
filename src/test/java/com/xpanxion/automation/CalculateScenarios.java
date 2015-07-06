@@ -1,27 +1,25 @@
 package com.xpanxion.automation;
 
-
-
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by cdorsey on 7/1/2015.
+ * Created by cdorsey on 7/6/2015.
  */
-public class LoginLogoutScenarios {
-
+public class CalculateScenarios {
     private WebDriver driver;
-
-
     @Before
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\cdorsey\\Desktop\\SeaShark34-master\\SeaShark34\\chromedriver.exe");
@@ -34,9 +32,7 @@ public class LoginLogoutScenarios {
     }
 
     @Test
-    public void successfulLoginLogout() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\cdorsey\\Desktop\\SeaShark34-master\\SeaShark34\\chromedriver.exe");
-
+    public void addition() {
         driver = new ChromeDriver();
         driver.get("http://localhost:8080");
         String pageTitle = driver.getTitle();
@@ -57,22 +53,17 @@ public class LoginLogoutScenarios {
         Wait<WebDriver> wait = new WebDriverWait(driver, 30);
         wait.until(pageIsLoaded);
 
-        WebElement greeting = driver.findElement(By.tagName("h1")); //By.xpath("/html/body/h1")
-        assertEquals("Hi, Colt", greeting.getText());
+        WebElement comboBox = driver.findElement(By.name("operation"));
+        Select operation = new Select(comboBox);
 
-        WebElement logout = driver.findElement(By.tagName("a")); //By.linkText("Logout"));
-        logout.click();
+        operation.selectByVisibleText("Add");
 
-        String currentURL = driver.getCurrentUrl();
-        assertEquals("http://localhost:8080/index.html", currentURL);
-    }
+        WebElement operands = driver.findElement(By.name("operands"));
+        operands.sendKeys("1 2");
+        operands.submit();
 
-    @Test
-    public void missingRequiredField() {
-        driver.get("http://localhost:8080/index.html");
-        driver.findElement(By.name("guest")).submit();
-        WebElement errorMessage = driver.findElement(By.className("error-message"));
+        WebElement results = driver.findElement(By.id("result-text"));
+        assertEquals("Results: " + "1 + 2 = 3", results.getText());
 
-        assertEquals(true, errorMessage.isDisplayed());
     }
 }
