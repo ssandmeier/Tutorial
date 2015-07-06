@@ -2,6 +2,9 @@ package com.xpanxion.automation;
 
 
 
+import com.xpanxion.automation.pages.Application;
+import com.xpanxion.automation.pages.CalculationPage;
+import com.xpanxion.automation.pages.LoginPage;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,60 +22,34 @@ import static org.junit.Assert.assertEquals;
  */
 public class LoginLogoutScenarios {
 
-    private WebDriver driver;
-
+    private LoginPage loginPage;
+    private Application app;
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\cdorsey\\Desktop\\SeaShark34-master\\SeaShark34\\chromedriver.exe");
-        driver = new ChromeDriver();
+        app = new Application();
+        loginPage = app.start();
+        loginPage.navigateTo();
     }
 
     @After
     public void tearDown() {
-        driver.quit();
+        app = new Application();
+        app.quit();
     }
 
     @Test
     public void successfulLoginLogout() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\cdorsey\\Desktop\\SeaShark34-master\\SeaShark34\\chromedriver.exe");
-
-        driver = new ChromeDriver();
-        driver.get("http://localhost:8080");
-        String pageTitle = driver.getTitle();
-
-        assertEquals("Web-based Personalized Calculator", pageTitle);
-
-
-        WebElement guestField = driver.findElement(By.name("guest"));
-        guestField.sendKeys("Colt");
-        guestField.submit();
-
-        ExpectedCondition<Boolean> pageIsLoaded = new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver webDriver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-            }
-        };
-
-        Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-        wait.until(pageIsLoaded);
-
-        WebElement greeting = driver.findElement(By.tagName("h1")); //By.xpath("/html/body/h1")
-        assertEquals("Hi, Colt", greeting.getText());
-
-        WebElement logout = driver.findElement(By.tagName("a")); //By.linkText("Logout"));
-        logout.click();
-
-        String currentURL = driver.getCurrentUrl();
-        assertEquals("http://localhost:8080/index.html", currentURL);
+        loginPage.verifyPageTitle("Web-based Personalized Calculator")
+            .loginAs("Colt")
+            .verifyDisplayGreeting("Hi, Colt")
+            .logout()
+            .verifyCurrentUrl();
     }
 
     @Test
     public void missingRequiredField() {
-        driver.get("http://localhost:8080/index.html");
-        driver.findElement(By.name("guest")).submit();
-        WebElement errorMessage = driver.findElement(By.className("error-message"));
-
-        assertEquals(true, errorMessage.isDisplayed());
+        loginPage.loginAs("");
+        loginPage.verifyDisplayError();
     }
 }

@@ -1,69 +1,71 @@
 package com.xpanxion.automation;
 
-import org.junit.After;
-import org.junit.Before;
+import com.xpanxion.automation.pages.Application;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by cdorsey on 7/6/2015.
  */
 public class CalculateScenarios {
-    private WebDriver driver;
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\cdorsey\\Desktop\\SeaShark34-master\\SeaShark34\\chromedriver.exe");
-        driver = new ChromeDriver();
-    }
+    Application app = new Application();
 
-    @After
-    public void tearDown() {
-        driver.quit();
+    @Test
+    public void addingLargeNumbersCausesError() {
+        app.start()
+                .loginAs("Colt")
+                .performCalculation("Add", "9999999999 1")
+                .verifyDisplayResults("Results: 9999999999 + 1 = 10000000000");
+
+        app.quit();
+    }
+    @Test
+    public void addition() {
+        app.start()
+                .loginAs("Colt")
+                .performCalculation("Add", "1 2")
+                .verifyDisplayResults("Results: 1 + 2 = 3");
+
+        app.quit();
     }
 
     @Test
-    public void addition() {
-        driver = new ChromeDriver();
-        driver.get("http://localhost:8080");
-        String pageTitle = driver.getTitle();
+    public void subtraction() {
+        app.start()
+                .loginAs("Colt")
+                .performCalculation("Subtract", "4 3")
+                .verifyDisplayResults("Results: 4 - 3 = 1");
 
-        assertEquals("Web-based Personalized Calculator", pageTitle);
+        app.quit();
+    }
 
+    @Test
+    public void multiplication() {
+        app.start()
+                .loginAs("Colt")
+                .performCalculation("Multiply", "1 2")
+                .verifyDisplayResults("Results: 1 * 2 = 2");
 
-        WebElement guestField = driver.findElement(By.name("guest"));
-        guestField.sendKeys("Colt");
-        guestField.submit();
+        app.quit();
+    }
 
-        ExpectedCondition<Boolean> pageIsLoaded = new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver webDriver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-            }
-        };
+    @Test
+    public void division() {
+        app.start()
+                .loginAs("Colt")
+                .performCalculation("Divide", "4 2")
+                .verifyDisplayResults("Results: 4 / 2 = 2");
 
-        Wait<WebDriver> wait = new WebDriverWait(driver, 30);
-        wait.until(pageIsLoaded);
+        app.quit();
+    }
 
-        WebElement comboBox = driver.findElement(By.name("operation"));
-        Select operation = new Select(comboBox);
+    @Test
+    public void factorial() {
+        app.start()
+                .loginAs("Colt")
+                .performCalculation("Factorial", "5 ")
+                .verifyDisplayResults("Results: 5! = 120");
 
-        operation.selectByVisibleText("Add");
-
-        WebElement operands = driver.findElement(By.name("operands"));
-        operands.sendKeys("1 2");
-        operands.submit();
-
-        WebElement results = driver.findElement(By.id("result-text"));
-        assertEquals("Results: " + "1 + 2 = 3", results.getText());
-
+        app.quit();
     }
 }

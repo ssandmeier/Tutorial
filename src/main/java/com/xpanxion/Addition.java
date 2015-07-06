@@ -9,11 +9,11 @@ public class Addition extends BinaryOperation {
         super("+");
     }
 
-    protected int calculate(int addEnd, int augEnd) {
+    protected long calculate(long addEnd, long augEnd) {
         return addEnd + augEnd;
     }
 
-    protected boolean isValid(int addEnd, int aguEnd) {
+    protected boolean isValid(long addEnd, long aguEnd) {
         return true;
     }
 

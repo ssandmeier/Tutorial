@@ -12,11 +12,11 @@ public abstract class BinaryOperation implements Operation {
         operation = op;
     }
 
-    protected abstract int calculate(int leftHandSide, int rightHandSide);
-    protected abstract boolean isValid(int leftHandSide, int rightHandSide);
+    protected abstract long calculate(long leftHandSide, long rightHandSide);
+    protected abstract boolean isValid(long leftHandSide, long rightHandSide);
     protected abstract String errorMessage();
 
-    public Calculation successfulCalculation(int LeftHandSide, int RightHandSide, int result) {
+    public Calculation successfulCalculation(long LeftHandSide, long RightHandSide, long result) {
 
         Calculation calculation = new Calculation();
 
@@ -35,11 +35,11 @@ public abstract class BinaryOperation implements Operation {
     }
     public Calculation performOperation(Scanner keyboard) {
 
-        int leftHandSide = keyboard.nextInt();
-        int rightHandSide = keyboard.nextInt();
+        long leftHandSide = keyboard.nextLong();
+        long rightHandSide = keyboard.nextLong();
 
         if(isValid(leftHandSide, rightHandSide)) {
-            int result = calculate(leftHandSide,rightHandSide);
+            long result = calculate(leftHandSide,rightHandSide);
             return successfulCalculation(leftHandSide, rightHandSide, result);
         } else {
             return invalidCalculation(errorMessage());

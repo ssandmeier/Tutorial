@@ -9,11 +9,11 @@ public class Subtraction extends BinaryOperation {
         super("-");
     }
 
-    protected int calculate(int minBeg, int minEnd) {
+    protected long calculate(long minBeg, long minEnd) {
         return minBeg - minEnd;
     }
 
-    protected boolean isValid(int minBeg, int minEnd) {
+    protected boolean isValid(long minBeg, long minEnd) {
         return true;
     }
 

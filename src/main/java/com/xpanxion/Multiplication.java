@@ -9,12 +9,12 @@ public class Multiplication extends BinaryOperation {
         super("*");
     }
 
-    protected int calculate(int multiplier, int multiplicand) {
+    protected long calculate(long multiplier, long multiplicand) {
         return multiplier * multiplicand;
     }
 
 
-    protected boolean isValid(int multiplier, int multiplicand) {
+    protected boolean isValid(long multiplier, long multiplicand) {
         return true;
     }
 

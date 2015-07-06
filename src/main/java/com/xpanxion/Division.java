@@ -11,12 +11,12 @@ public class Division extends BinaryOperation {
         super("/");
     }
     
-    protected int calculate(int dividend, int divisor) {
+    protected long calculate(long dividend, long divisor) {
         return dividend / divisor;
     }
 
 
-    protected boolean isValid(int dividend, int divisor) {
+    protected boolean isValid(long dividend, long divisor) {
         return divisor != 0;
     }
 
